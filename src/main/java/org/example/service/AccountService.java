@@ -23,7 +23,7 @@ public class AccountService {
     }
 
     public void createAccount(int userId) {
-        Account account = new Account(userId);
+        Account account = new Account(userId, accountProperties.getDefaultAmount());
         accountList.add(account);
         userService.getUserById(userId).getAccountList().add(account);
     }
@@ -55,7 +55,7 @@ public class AccountService {
 
     private Account getAccountById(int accountId) {
         return accountList.stream()
-                .filter(user -> user.getId() == accountId)
+                .filter(account -> account.getId() == accountId)
                 .findFirst().get();
     }
 }

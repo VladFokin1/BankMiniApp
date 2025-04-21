@@ -7,16 +7,12 @@ import org.springframework.stereotype.Component;
 @Component
 @PropertySource("classpath:application.properties")
 public class AccountProperties {
-    private final double defaultAmount;
-    private final double transferCommission;
+    @Value("${account.default-amount}")
+    private double defaultAmount;
 
-    public AccountProperties(
-            @Value("${account.default-amount}") double defaultAmount,
-            @Value("${account.transfer-commission}") double transferCommission
-    ) {
-        this.defaultAmount = defaultAmount;
-        this.transferCommission = transferCommission;
-    }
+    @Value("${account.transfer-commission}")
+    private double transferCommission;
+
 
     public double getDefaultAmount() {
         return defaultAmount;

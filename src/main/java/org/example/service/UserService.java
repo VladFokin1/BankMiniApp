@@ -1,6 +1,8 @@
 package org.example.service;
 
+import org.example.Loggable;
 import org.example.model.User;
+import org.springframework.context.annotation.Lazy;
 import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
@@ -10,13 +12,18 @@ import java.util.Optional;
 @Service
 public class UserService {
     private final List<User> userList;
+    private final AccountService accountService;
 
-    public UserService() {
+    public UserService(@Lazy AccountService accountService) {
         userList = new ArrayList<>();
+        this.accountService = accountService;
     }
 
+    @Loggable
     public void createUser(String username) {
-        userList.add(new User(username));
+        User newUser = new User(username);
+        userList.add(newUser);
+        accountService.createAccount(newUser.getId());
     }
 
     public User getUserById(int id) {

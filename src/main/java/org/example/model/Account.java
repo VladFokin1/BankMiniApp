@@ -14,11 +14,10 @@ public class Account {
     @Autowired
     private AccountProperties properties;
 
-
-    public Account(int userId) {
+    public Account(int userId, double moneyAmount) {
         this.id = ++maxId;
         this.userId = userId;
-        this.moneyAmount = properties.getDefaultAmount();
+        this.moneyAmount = moneyAmount;
     }
 
     public int getId() {
@@ -38,5 +37,14 @@ public class Account {
     }
     public void removeMoney(double amount) {
         this.moneyAmount -= amount;
+    }
+
+    @Override
+    public String toString() {
+        return "Account{" +
+                "id=" + id +
+                ", userId=" + userId +
+                ", moneyAmount=" + moneyAmount +
+                '}';
     }
 }

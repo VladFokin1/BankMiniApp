@@ -15,6 +15,7 @@ public class User {
         this.id = ++maxId;
         this.login = login;
         accountList = new ArrayList<Account>();
+//        accountList.add(new Account(this.id));
     }
 
     public int getId() {
@@ -27,5 +28,14 @@ public class User {
 
     public List<Account> getAccountList() {
         return accountList;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "id=" + id +
+                ", login='" + login + '\'' +
+                ", accountList=" + accountList +
+                '}';
     }
 }
