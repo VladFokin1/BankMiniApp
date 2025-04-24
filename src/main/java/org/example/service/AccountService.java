@@ -22,10 +22,11 @@ public class AccountService {
 
     }
 
-    public void createAccount(int userId) {
+    public Account createAccount(int userId) {
         Account account = new Account(userId, accountProperties.getDefaultAmount());
         accountList.add(account);
         userService.getUserById(userId).getAccountList().add(account);
+        return account;
     }
 
     public void depositAccount(int accountId, double amount) {

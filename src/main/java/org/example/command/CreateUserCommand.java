@@ -21,5 +21,6 @@ public class CreateUserCommand implements Command {
         Scanner sc = new Scanner(System.in);
         String login = sc.nextLine().trim();
         userService.createUser(login);
+        sc.close();
     }
 }

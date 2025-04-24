@@ -19,11 +19,11 @@ public class UserService {
         this.accountService = accountService;
     }
 
-    @Loggable
-    public void createUser(String username) {
+    public User createUser(String username) {
         User newUser = new User(username);
         userList.add(newUser);
         accountService.createAccount(newUser.getId());
+        return newUser;
     }
 
     public User getUserById(int id) {
