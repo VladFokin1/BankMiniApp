@@ -5,6 +5,7 @@ import org.example.Loggable;
 import org.example.service.UserService;
 import org.springframework.stereotype.Component;
 
+import java.io.IOException;
 import java.util.Scanner;
 
 public class CreateUserCommand implements Command {
@@ -18,9 +19,11 @@ public class CreateUserCommand implements Command {
     @Override
     public void execute() {
         System.out.println("Enter login for new user:");
-        Scanner sc = new Scanner(System.in);
-        String login = sc.nextLine().trim();
-        userService.createUser(login);
-        sc.close();
+        try (Scanner sc = new Scanner(System.in)) {
+            String login = sc.nextLine().trim();
+            userService.createUser(login);
+        } catch (Exception e) {
+            return;
+        }
     }
 }

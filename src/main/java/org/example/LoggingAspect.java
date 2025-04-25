@@ -1,10 +1,7 @@
 package org.example;
 
 import org.aspectj.lang.JoinPoint;
-import org.aspectj.lang.annotation.After;
-import org.aspectj.lang.annotation.AfterReturning;
-import org.aspectj.lang.annotation.Aspect;
-import org.aspectj.lang.annotation.Before;
+import org.aspectj.lang.annotation.*;
 import org.springframework.context.annotation.EnableAspectJAutoProxy;
 import org.springframework.stereotype.Component;
 
@@ -20,5 +17,16 @@ public class LoggingAspect {
             Object result
     ) {
         System.out.println("User created: " + result);
+    }
+
+    @AfterThrowing(
+            value = "execution(* org.example.service.*.*(..))",
+            throwing = "exception"
+    )
+    public void afterThrowingExceptionLog(
+            JoinPoint joinPoint,
+            Exception exception
+    ) {
+        System.out.println(exception.getMessage());
     }
 }

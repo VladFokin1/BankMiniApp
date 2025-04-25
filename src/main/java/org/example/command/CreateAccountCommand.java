@@ -15,10 +15,11 @@ public class CreateAccountCommand implements Command {
     @Override
     public void execute() {
         System.out.println("Enter the user id for which to create an account:");
-        Scanner sc = new Scanner(System.in);
-        int id = sc.nextInt();
-        accountService.createAccount(id);
-        sc.close();
-
+        try (Scanner sc = new Scanner(System.in)){
+            int id = sc.nextInt();
+            accountService.createAccount(id);
+        } catch (Exception e) {
+            return;
+        }
     }
 }

@@ -26,10 +26,10 @@ public class UserService {
         return newUser;
     }
 
-    public User getUserById(int id) {
+    public Optional<User> getUserById(int id) {
         return userList.stream()
                 .filter(user -> user.getId() == id)
-                .findFirst().get();
+                .findFirst();
 
     }
 
