@@ -26,6 +26,7 @@ public class CommandMapConfig {
 
         commands.put("user_create", new CreateUserCommand(userService));
         commands.put("show_all_users", new ShowAllUsersCommand(userService));
+        commands.put("account_create", new CreateAccountCommand(accountService));
 
         return  commands;
     }
